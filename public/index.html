@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edge Node</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>Edge Node Deployed App Demo</h1>
+  <div id="node-data">Fetching node data...</div>
+
+  <script>
+    async function fetchNodeData() {
+      try {
+        const response = await fetch('/edgenode');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        const nodeDataDiv = document.getElementById('node-data');
+        nodeDataDiv.innerText = `Node PK: ${data.nodePK}, Node Alias: ${data.nodeAlias}`;
+      } catch (error) {
+        console.error('Error fetching node data:', error);
+      }
+    }
+
+    fetchNodeData();
+  </script>
+</body>
+</html>
